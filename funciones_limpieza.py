@@ -35,6 +35,9 @@ def limpieza_genero (df, col, tipo):
     df[col] = df[col].str.replace('1', "Female")
     df[col] = df[col].str.replace('0', "Male")
 
+def primer_digito(df, col):
+    df[col] = df[col].astype(str).str[0]  # toma solo el primer carácter
+
 def limpieza_maritalstatus (df, col):
     df[col] = df[col].str.replace(r'^marr.*', 'married', regex=True)
     df[col] = df[col].str.replace(r'^div.*', 'divorced', regex=True)
