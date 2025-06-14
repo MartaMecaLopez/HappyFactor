@@ -25,9 +25,11 @@ def limpieza_numeros (df, col, tipo):
     df[col] = df[col].astype(tipo)
 
 def limpieza_boleanos (df, col, tipo):
-    df[col] = df[col].str.replace('Yes', "True")
-    df[col] = df[col].str.replace('1', "True")
-    df[col] = df[col].str.replace('0', "False")
+    df[col] = df[col].str.replace('Yes', "yes")
+    df[col] = df[col].str.replace('1', "yes")
+    df[col] = df[col].str.replace('0', "no")
+    df[col] = df[col].str.replace('False', "no")
+    df[col] = df[col].str.replace('True', "no")
     df[col] = df[col].astype(tipo)
 
 def limpieza_genero (df, col, tipo):
