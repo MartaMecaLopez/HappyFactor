@@ -58,3 +58,55 @@ def grafico_dispersion(df, colx, coly, titulo, eje_x, eje_y):
 
     plt.tight_layout()
     plt.show()
+
+
+
+# Matriz de correlación
+def matriz_correlacion (df):
+ 
+    num_vars = df.select_dtypes(include=np.number).columns.tolist()
+    correlation_matrix = df[num_vars].corr()
+
+    plt.figure(figsize=(15, 8))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=.5)
+    # Añade título
+    plt.title('Matriz de Correlación entre Variables')
+    # Muestra el gráfico
+    plt.show()   
+
+
+
+def grafico_comparacion(df, colX, matiz, nombreX, nombreY):
+    sns.countplot(x=colX, data=df, color = 'c', hue = matiz)
+    plt.xticks(rotation=45)
+    plt.xlabel(nombreX)
+    plt.ylabel(nombreY)
+    plt.show() 
+
+
+
+def comparacion_con_porcentajes(df, colX, matiz, nombreX, nombreY, titulo):
+    grafico = sns.countplot(x=colX, data= df, color = 'c', hue = matiz)
+    plt.xticks(rotation=45)
+
+    plt.xlabel(nombreX)
+    plt.ylabel(nombreY)
+
+    total = len(df)
+    for p in grafico.patches:
+        height = p.get_height()
+        percentage = f'{100 * height / total:.1f}%'
+        grafico.text(
+            p.get_x() + p.get_width() / 2, 
+            height + 1,  # Ajuste para que no tape la barra
+            percentage, 
+            ha='center'
+        )
+    plt.title(titulo)
+    plt.tight_layout()
+    plt.show()     
+
+
+def clasificar_veterania(df, col, nueva_col):
+    df[nueva_col] = df[col].apply(lambda x: '+ de 10 años' if x > 10 else '-= de 10 años')
+    return df   
