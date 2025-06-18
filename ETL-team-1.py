@@ -8,6 +8,7 @@ import seaborn as sns
 import funciones_estadistica as estadistica
 import pymysql
 from sqlalchemy import create_engine, text
+from sqlalchemy import inspect
 import ast
 from word2number import w2n
 from sklearn.impute import SimpleImputer
@@ -129,15 +130,21 @@ print("Creamos las tablas en SQL")
 time.sleep(3)
 
     # Borrar datos previos para asegurar que no hay problemas al ejecutar de nuevo
+# Borrar datos previos en todas las tablas (en orden para evitar errores de relaciones)
 with engine.begin() as conn:
+    inspector = inspect(conn)
+    tablas_existentes = inspector.get_table_names()
     tablas = [
         "employee_info", "employee_career", "employee_rating", "employee_training",
         "employee_satisfaction", "employee_salary", "employee_conditions", "employee_company",
         "attrition"
     ]
     for tabla in tablas:
-        conn.execute(text(f"DELETE FROM {tabla}"))
-    print("Datos borrados de las tablas.")
+        if tabla in tablas_existentes:
+            conn.execute(text(f"DELETE FROM {tabla}"))
+            print(f"Datos borrados de la tabla: {tabla}")
+        else:
+            print(f"La tabla '{tabla}' no existe. No se ejecutó DELETE.")
 
     #Creación de tablas SQL
 tablas_sql = {

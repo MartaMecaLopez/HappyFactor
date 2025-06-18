@@ -32,7 +32,8 @@ def grafico_barras(df, col, titulo, eje_x, eje_y):
 def grafico_pastel(df, col, titulo):
     plt.figure(figsize=(5, 5))
     counts = df[col].value_counts()
-    plt.pie(counts, labels=counts.index, autopct='%1.1f%%', startangle=90)
+    colores = sns.color_palette("coolwarm", len(counts))
+    plt.pie(counts, labels=counts.index, autopct='%1.1f%%', startangle=90, colors=colores)
     plt.title(titulo)
     plt.tight_layout()
     plt.show()
