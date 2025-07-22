@@ -1,10 +1,6 @@
-# proyecto-da-promo-50-modulo-3-team-1
-
 # OPTIMIZACIÓN DE TALENTO 
 
-El equipo 1 llevamos a cabo un proyecto de optimización del talento ✨🏆🌟 
-
-Este proyecto consiste en realizar un análisis acerca de la rotación y satisfacción del personal de una empresa.
+Proyecto de optimización del talento que consiste en realizar un análisis acerca de la rotación y satisfacción del personal de una empresa.
 
 Disponemos de un CSV en el que encontramos información acerca de la edad, bajas voluntarias, condiciones de trabajo, puntuaciones respecto
 a la satisfacción de la plantilla, salarios, etc. 
