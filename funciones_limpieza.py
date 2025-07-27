@@ -29,7 +29,7 @@ def limpieza_boleanos (df, col, tipo):
     df[col] = df[col].str.replace('1', "yes")
     df[col] = df[col].str.replace('0', "no")
     df[col] = df[col].str.replace('False', "no")
-    df[col] = df[col].str.replace('True', "no")
+    df[col] = df[col].str.replace('True', "yes")
     df[col] = df[col].astype(tipo)
 
 def limpieza_genero (df, col, tipo):
